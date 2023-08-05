@@ -234,26 +234,30 @@
 }
 
 /* Buttons */
+.btn-primary,
+.btn-secondary {
+  padding: 10px 25px;
+  border-radius: 10px;
+  width: fit-content;
+  margin: auto;
+}
+
 .btn-primary {
   background-color: rgb(160, 30, 30);
-  padding: 15px;
   border: 1px solid rgb(160, 30, 30);
-  border-radius: 5px;
 }
 .btn-primary:hover {
-  background-color: white;
   color: rgb(160, 30, 30);
+  background-color: white;
   border: 1px solid rgb(160, 30, 30);
 }
 
 .btn-secondary {
   background-color: rgb(25, 90, 220);
-  padding: 15px;
   border: 1px solid rgb(25, 90, 220);
-  border-radius: 5px;
 }
 .btn-secondary:hover {
-  background-color: white;
   color: rgb(25, 90, 220);
+  background-color: white;
   border: 1px solid rgb(25, 90, 220);
 }

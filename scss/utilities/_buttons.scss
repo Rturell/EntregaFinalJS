@@ -1,27 +1,31 @@
 /* Buttons */
 
+.btn-primary,
+.btn-secondary {
+    padding: 10px 25px;
+    border-radius: 10px;
+    width: fit-content;
+    margin: auto;
+}
+
 .btn-primary {
     background-color: $color-primary;
-    padding: 15px;
     border: 1px solid $color-primary;
-    border-radius: 5px;
 
     &:hover {
-        background-color: $color-white;
         color: $color-primary;
+        background-color: $color-white;
         border: 1px solid $color-primary;
     }
 }
 
 .btn-secondary {
     background-color: $color-secondary;
-    padding: 15px;
     border: 1px solid $color-secondary;
-    border-radius: 5px;
 
     &:hover {
-        background-color: $color-white;
         color: $color-secondary;
+        background-color: $color-white;
         border: 1px solid $color-secondary;
     }
 }
