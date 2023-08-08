@@ -44,15 +44,17 @@ class Cart {
         localStorage.setItem('CartList', cartListJSON)
     }
 
-    getLocalStorage() {
-        let cartListJSON = localStorage.getItem('CartList')
-        this.cartList = JSON.parse(cartListJSON)
-    }
+   getLocalStorage() {
+       let cartListJSON = localStorage.getItem('CartList');
+       console.log('Raw JSON from Local Storage:', cartListJSON);
+       this.cartList = JSON.parse(cartListJSON) || [];
+       console.log('Parsed cartList:', this.cartList);
+   }
 
     showCartOnDom() {
 
         let cart = document.getElementById('cart-custom')
-        cart.innerHTML = ""
+        cart.innerHTML = '';
         this.cartList.forEach(product => {
             cart.innerHTML += `
             <div class="col-auto col-md-7">
@@ -138,9 +140,9 @@ productController.productList.forEach(product => {
     addToCartBtn.addEventListener('click', () => {
         cart.addToCartList(product)
         cart.setLocalStorage()
-        console.log(cart.cartList)
+        // console.log(cart.cartList)
         cart.getLocalStorage()
-        console.log(cart.cartList)
+        // console.log(cart.cartList) 
         cart.showCartOnDom()
     })
 
