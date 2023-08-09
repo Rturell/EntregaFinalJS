@@ -39,6 +39,12 @@ class Cart {
         this.cartList.push(product)
     }
 
+    removeFromCartList(productRemove) {
+        let product = this.cartList.some(product => product.id == productRemove.id)
+        let index = this.cartList.indexOf(product)
+        this.cartList.splice(index, 1)
+    }
+
     setLocalStorage() {
         let cartListJSON = JSON.stringify(this.cartList)
         localStorage.setItem('CartList', cartListJSON)
@@ -75,6 +81,7 @@ class Cart {
             </div>
             <div class="pl-0 flex-sm-col col-auto  my-auto">
               <p><b>Precio: $${product.price}</b></p>
+              <button id="${product.id}">Eliminar Producto</button>
             </div>
             <hr>`
 
@@ -86,6 +93,21 @@ class Cart {
 
             let checkout = document.getElementById('checkout')
             checkout.innerHTML = `Pagar : $ ${precioTotal}`
+
+        });
+
+        this.cartList.forEach(product => {
+
+            // Event Listener para borrar producto del Carrito
+
+            let btnRemove = document.getElementById(`${product.id}`)
+
+            btnRemove.addEventListener("click", () => {
+
+                this.removeFromCartList(product)
+                this.setLocalStorage()
+                this.showCartOnDom()
+            })
 
         });
 
