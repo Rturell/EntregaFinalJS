@@ -51,6 +51,7 @@ class Cart {
 
     showCartOnDom() {
 
+        let precioTotal = 0
         let cart = document.getElementById('cart-custom')
         cart.innerHTML = '';
         this.cartList.forEach(product => {
@@ -77,8 +78,22 @@ class Cart {
             </div>
             <hr>`
 
+            // Generar Total Y mostrarlo en el DOM
+
+            precioTotal = product.price + precioTotal
+            let total = document.getElementById('total')
+            total.innerHTML = `<p class="mb-1"><b>${precioTotal}</b></p>`
+
+            let checkout = document.getElementById('checkout')
+            checkout.innerHTML = `Pagar : $ ${precioTotal}`
+
         });
+
+
+
+
     }
+
 }
 
 class ProductController {
