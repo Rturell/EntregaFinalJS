@@ -147,6 +147,5 @@ productController.showProductsOnDom()
 
 // Agregar producto elegido a la Lista Carrito y Mostrarla en el Dom de Carrito
 productController.AddToCartEventListener()
-
 cart.getLocalStorage()
 cart.showCartOnDom()
