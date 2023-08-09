@@ -44,12 +44,10 @@ class Cart {
         localStorage.setItem('CartList', cartListJSON)
     }
 
-   getLocalStorage() {
-       let cartListJSON = localStorage.getItem('CartList');
-       console.log('Raw JSON from Local Storage:', cartListJSON);
-       this.cartList = JSON.parse(cartListJSON) || [];
-       console.log('Parsed cartList:', this.cartList);
-   }
+    getLocalStorage() {
+        let cartListJSON = localStorage.getItem('CartList');
+        this.cartList = JSON.parse(cartListJSON) || [];
+    }
 
     showCartOnDom() {
 
@@ -115,6 +113,22 @@ class ProductController {
 
         });
     }
+
+    AddToCartEventListener() {
+
+        productController.productList.forEach(product => {
+
+            let addToCartBtn = document.getElementById(`${product.id}`)
+
+            addToCartBtn.addEventListener('click', () => {
+                cart.addToCartList(product)
+                cart.setLocalStorage()
+                cart.showCartOnDom()
+
+            })
+
+        });
+    }
 }
 
 
@@ -132,18 +146,7 @@ productController.addToProductList(new Products(3, 'Vino Yours 2013', 280, 'Red 
 productController.showProductsOnDom()
 
 // Agregar producto elegido a la Lista Carrito y Mostrarla en el Dom de Carrito
+productController.AddToCartEventListener()
 
-productController.productList.forEach(product => {
-
-    let addToCartBtn = document.getElementById(`${product.id}`)
-
-    addToCartBtn.addEventListener('click', () => {
-        cart.addToCartList(product)
-        cart.setLocalStorage()
-        // console.log(cart.cartList)
-        cart.getLocalStorage()
-        // console.log(cart.cartList) 
-        cart.showCartOnDom()
-    })
-
-});
+cart.getLocalStorage()
+cart.showCartOnDom()
