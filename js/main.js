@@ -59,7 +59,8 @@ class Cart {
 
         if (cart.cartList != "") {
 
-            let precioTotal = 0
+            let subTotalPrice = 0
+            let ivaPrice = 0
             let cart = document.getElementById('cart-custom')
             cart.innerHTML = '';
             this.cartList.forEach(product => {
@@ -89,18 +90,27 @@ class Cart {
 
                 // Generar Total Y mostrarlo en el DOM
 
-                precioTotal = product.price + precioTotal
+                subTotalPrice = product.price + subTotalPrice
+                let subTotal = document.getElementById('subtotal')
+                subTotal.innerHTML = `<p class="mb-1">${subTotalPrice}</p>`
+
+                ivaPrice = Math.round(subTotalPrice * 0.21)
+                let iva = document.getElementById('iva')
+                iva.innerHTML = `<p>${ivaPrice}</p>`
+
+                let totalPrice = ivaPrice + subTotalPrice
                 let total = document.getElementById('total')
-                total.innerHTML = `<p class="mb-1"><b>${precioTotal}</b></p>`
+                total.innerHTML = `<p class="mb-1"><b>${totalPrice}</b></p>`
 
                 let checkout = document.getElementById('checkout')
-                checkout.innerHTML = `Pagar : $ ${precioTotal}`
+                checkout.innerHTML = `Pagar : $ ${totalPrice}`
+                checkout.disabled = false
 
             });
 
-            this.cartList.forEach(product => {
+            // Event Listener para borrar producto del Carrito
 
-                // Event Listener para borrar producto del Carrito
+            this.cartList.forEach(product => {
 
                 let btnRemove = document.getElementById(`${product.id}`)
 
@@ -116,6 +126,12 @@ class Cart {
         } else {
             let cart = document.getElementById('cart-custom')
             cart.innerHTML = `<p>No tienes productos en tu carrito</p>`;
+
+            let subTotal = document.getElementById('subtotal')
+            subTotal.innerHTML = `<p class="mb-1"><b>0</b></p>`
+
+            let iva = document.getElementById('iva')
+            iva.innerHTML = `<p class="mb-1"><b>0</b></p>`
 
             let total = document.getElementById('total')
             total.innerHTML = `<p class="mb-1"><b>0</b></p>`
