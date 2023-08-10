@@ -57,11 +57,13 @@ class Cart {
 
     showCartOnDom() {
 
-        let precioTotal = 0
-        let cart = document.getElementById('cart-custom')
-        cart.innerHTML = '';
-        this.cartList.forEach(product => {
-            cart.innerHTML += `
+        if (cart.cartList != "") {
+
+            let precioTotal = 0
+            let cart = document.getElementById('cart-custom')
+            cart.innerHTML = '';
+            this.cartList.forEach(product => {
+                cart.innerHTML += `
             <div class="col-auto col-md-7">
                 <div class="media flex-column flex-sm-row">
                     <img class="img-fluid" src="${product.img}" width="62" height="62">
@@ -85,33 +87,43 @@ class Cart {
             </div>
             <hr>`
 
-            // Generar Total Y mostrarlo en el DOM
+                // Generar Total Y mostrarlo en el DOM
 
-            precioTotal = product.price + precioTotal
+                precioTotal = product.price + precioTotal
+                let total = document.getElementById('total')
+                total.innerHTML = `<p class="mb-1"><b>${precioTotal}</b></p>`
+
+                let checkout = document.getElementById('checkout')
+                checkout.innerHTML = `Pagar : $ ${precioTotal}`
+
+            });
+
+            this.cartList.forEach(product => {
+
+                // Event Listener para borrar producto del Carrito
+
+                let btnRemove = document.getElementById(`${product.id}`)
+
+                btnRemove.addEventListener("click", () => {
+
+                    this.removeFromCartList(product)
+                    this.setLocalStorage()
+                    this.showCartOnDom()
+                })
+
+            });
+
+        } else {
+            let cart = document.getElementById('cart-custom')
+            cart.innerHTML = `<p>No tienes productos en tu carrito</p>`;
+
             let total = document.getElementById('total')
-            total.innerHTML = `<p class="mb-1"><b>${precioTotal}</b></p>`
+            total.innerHTML = `<p class="mb-1"><b>0</b></p>`
 
             let checkout = document.getElementById('checkout')
-            checkout.innerHTML = `Pagar : $ ${precioTotal}`
-
-        });
-
-        this.cartList.forEach(product => {
-
-            // Event Listener para borrar producto del Carrito
-
-            let btnRemove = document.getElementById(`${product.id}`)
-
-            btnRemove.addEventListener("click", () => {
-
-                this.removeFromCartList(product)
-                this.setLocalStorage()
-                this.showCartOnDom()
-            })
-
-        });
-
-
+            checkout.innerHTML = `Pagar: 0`
+            checkout.disabled = true
+        }
 
 
     }
