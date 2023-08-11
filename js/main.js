@@ -42,7 +42,7 @@ class Cart {
     removeFromCartList(productRemove) {
         let product = this.cartList.find(product => product.id === productRemove.id)
         let index = this.cartList.indexOf(product)
-        this.cartList.splice(index,1)
+        this.cartList.splice(index, 1)
     }
 
     setLocalStorage() {
@@ -53,6 +53,27 @@ class Cart {
     getLocalStorage() {
         let cartListJSON = localStorage.getItem('CartList');
         this.cartList = JSON.parse(cartListJSON) || [];
+    }
+
+    removeLocalStorage() {
+        localStorage.removeItem('CartList')
+    }
+
+    checkout() {
+        let checkout = document.getElementById('checkout')
+        checkout.addEventListener('click', () => {
+
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Tu compra se ha realizado con éxito',
+                showConfirmButton: false,
+                timer: 2000
+            })
+
+            this.removeLocalStorage()
+            checkout.disabled = true
+        })
     }
 
     showCartOnDom() {
@@ -118,6 +139,19 @@ class Cart {
                     this.removeFromCartList(product)
                     this.setLocalStorage()
                     this.showCartOnDom()
+
+                    Toastify({
+
+                        text: `${product.name} eliminado del carrito!`,
+                        duration: 2000,
+                        gravity: "top",
+                        position: "center",
+                        style: {
+                            background: "linear-gradient(117.8deg, rgb(240, 19, 77) 22.2%, rgb(228, 0, 124) 88.7%)",
+                        },
+
+                    }).showToast();
+
                 })
 
             });
@@ -225,3 +259,4 @@ productController.showProductsOnDom()
 productController.AddToCartEventListener()
 cart.getLocalStorage()
 cart.showCartOnDom()
+cart.checkout()
