@@ -189,6 +189,18 @@ class ProductController {
                 cart.setLocalStorage()
                 cart.showCartOnDom()
 
+                Toastify({
+
+                    text: `"${product.name}" agregado al carrito`,
+                    duration: 2000,
+                    gravity: "top",
+                    position: "center",
+                    style: {
+                        background: "linear-gradient(to right, #00b09b, #96c93d)",
+                    },
+
+                }).showToast();
+
             })
 
         });
