@@ -148,7 +148,7 @@ class Cart {
                         text: `${product.name} eliminado del carrito!`,
                         duration: 2000,
                         gravity: "bottom",
-                        position: "center",
+                        position: "right",
                         style: {
                             background: "linear-gradient(117.8deg, rgb(240, 19, 77) 22.2%, rgb(228, 0, 124) 88.7%)",
                         },
@@ -231,7 +231,7 @@ class ProductController {
                     text: `"${product.name}" agregado al carrito`,
                     duration: 2000,
                     gravity: "bottom",
-                    position: "center",
+                    position: "right",
                     style: {
                         background: "linear-gradient(to right, #00b09b, #96c93d)",
                     },
