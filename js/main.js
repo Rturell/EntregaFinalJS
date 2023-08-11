@@ -107,8 +107,8 @@ class Cart {
               <input class="quantity-input" type="number" placeholder="2" value="1">
             </div>
             <div class="pl-0 flex-sm-col col-auto  my-auto">
-              <p><b>Precio: $${product.price}</b></p>
-              <button id="${product.id}">Eliminar Producto</button>
+              <p class="price"><b>Precio: $${product.price}</b></p>
+              <a id="${product.id}" class="remove-btn">Eliminar Producto</a>
             </div>
             <hr>`
 

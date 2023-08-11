@@ -237,6 +237,29 @@
   font-size: 25px;
 }
 
+.keep-btn {
+  font-size: 12px;
+}
+
+.quantity-input {
+  margin: 10px 0;
+}
+
+.price {
+  margin: 0;
+}
+
+.remove-btn {
+  color: rgb(160, 30, 30);
+  font-size: 12px;
+  display: inline;
+  cursor: pointer;
+  text-decoration: none;
+}
+.remove-btn:hover {
+  color: black;
+}
+
 /* Buttons */
 .btn-primary,
 .btn-secondary {

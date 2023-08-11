@@ -142,3 +142,27 @@
 .checkout-title {
     font-size: 25px;
 }
+
+.keep-btn {
+    font-size: 12px;
+}
+
+.quantity-input {
+    margin: 10px 0;
+}
+
+.price {
+    margin: 0;
+}
+
+.remove-btn {
+    color: $color-primary;
+    font-size: 12px;
+    display: inline;
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover {
+        color: $color-black;
+    }
+}
