@@ -40,9 +40,9 @@ class Cart {
     }
 
     removeFromCartList(productRemove) {
-        let product = this.cartList.some(product => product.id == productRemove.id)
+        let product = this.cartList.find(product => product.id === productRemove.id)
         let index = this.cartList.indexOf(product)
-        this.cartList.splice(index, 1)
+        this.cartList.splice(index,1)
     }
 
     setLocalStorage() {
@@ -113,7 +113,6 @@ class Cart {
             this.cartList.forEach(product => {
 
                 let btnRemove = document.getElementById(`${product.id}`)
-
                 btnRemove.addEventListener("click", () => {
 
                     this.removeFromCartList(product)
