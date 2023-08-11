@@ -233,6 +233,10 @@
   text-align: center;
 }
 
+.checkout-title {
+  font-size: 25px;
+}
+
 /* Buttons */
 .btn-primary,
 .btn-secondary {
