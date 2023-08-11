@@ -253,6 +253,7 @@ productController.addToProductList(new Products(0, 'San Valentin Garnacha 2006',
 productController.addToProductList(new Products(1, 'Wardy Cabernet Sauvignon', 500, 'Red Wine, Chile', '/img/vinos/vino2.png'))
 productController.addToProductList(new Products(2, 'San Valentin Garnacha 2005', 300, 'Red Wine, Spain', '/img/vinos/vino3.png'))
 productController.addToProductList(new Products(3, 'Vino Yours 2013', 280, 'Red Blend, Uruguay', '/img/vinos/vino4.png'))
+productController.addToProductList(new Products(4, 'Garzón Reserva Tannat', 490, 'Tinto, Uruguay', '/img/vinos/vino5.png'))
 
 
 // Mostrar los Productos en el DOM
