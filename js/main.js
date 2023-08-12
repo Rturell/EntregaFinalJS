@@ -1,12 +1,3 @@
-// window.addEventListener("load", (event) => {
-
-//    let modal = document.getElementById("myModal")
-//    modal.style.display = "block";
-//    modal.style.opacity = "1";
-
-// });
-
-
 //Change navBar background on scroll
 window.onscroll = function () {
     var navMobile = document.getElementById('nav-mobile');
@@ -32,6 +23,10 @@ class Products {
 
     // increaseQuantity() {
     //     this.quantity++
+    // }
+
+    // decreaseQuantity() {
+    //     this.quantity--
     // }
 }
 
@@ -125,8 +120,8 @@ class Cart {
                     </div>
                 </div>
 
-                <div class="pl-0 flex-sm-col col-auto my-auto">
-                  <input id="quantity-input" class="quantity-input" min="1" max="10" type="number" value="${product.quantity}">
+                <div class="d-inline">
+                  <input class="quantity-input" min="1" max="10" type="number" value="${product.quantity}">
                 </div>
                 <div class="pl-0 flex-sm-col col-auto  my-auto">
                   <p class="price"><b>Precio:$${productPrice}</b></p>
