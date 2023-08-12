@@ -27,7 +27,12 @@ class Products {
         this.price = price
         this.description = description
         this.img = img
+        this.quantity = 1
     }
+
+    // increaseQuantity() {
+    //     this.quantity++
+    // }
 }
 
 class Cart {
@@ -35,8 +40,21 @@ class Cart {
         this.cartList = []
     }
 
-    addToCartList(product) {
-        this.cartList.push(product)
+    addToCartList(productToAdd) {
+
+        let productExist = this.cartList.some(product => product.id == productToAdd.id)
+
+        if (productExist) {
+
+            let product = this.cartList.find(producto => producto.id == productToAdd.id)
+            product.quantity = product.quantity + 1
+            console.log("ya existe!!")
+            console.log(product.quantity)
+
+        } else {
+            this.cartList.push(productToAdd)
+        }
+
     }
 
     removeFromCartList(productRemove) {
@@ -85,36 +103,40 @@ class Cart {
 
             let subTotalPrice = 0
             let ivaPrice = 0
+
             let cart = document.getElementById('cart-custom')
             cart.innerHTML = '';
+
             this.cartList.forEach(product => {
+
+                let productPrice = product.price * product.quantity
                 cart.innerHTML += `
-            <div class="col-auto col-md-7">
-                <div class="media flex-column flex-sm-row">
-                    <img class="img-fluid" src="${product.img}" width="62" height="62">
-                    <div class="media-body my-auto">
-                        <div class="row">
-                            <div class="col-auto">
-                              <p class="mb-0"> <b>${product.name}</b> </p><small class="text-muted"> ${product.description} </small>
+                <div class="col-auto col-md-7">
+                    <div class="media flex-column flex-sm-row">
+                        <img class="img-fluid" src="${product.img}" width="62" height="62">
+                        <div class="media-body my-auto">
+                            <div class="row">
+                                <div class="col-auto">
+                                  <p class="mb-0"> <b>${product.name}</b> </p><small class="text-muted"> ${product.description} </small>
+                                </div>
                             </div>
                         </div>
+
                     </div>
-
                 </div>
-            </div>
 
-            <div class="pl-0 flex-sm-col col-auto my-auto">
-              <input class="quantity-input" type="number" placeholder="2" value="1">
-            </div>
-            <div class="pl-0 flex-sm-col col-auto  my-auto">
-              <p class="price"><b>Precio: $${product.price}</b></p>
-              <a id="${product.id}" class="remove-btn">Eliminar Producto</a>
-            </div>
-            <hr>`
+                <div class="pl-0 flex-sm-col col-auto my-auto">
+                  <input id="quantity-input" class="quantity-input" min="1" max="10" type="number" value="${product.quantity}">
+                </div>
+                <div class="pl-0 flex-sm-col col-auto  my-auto">
+                  <p class="price"><b>Precio:$${productPrice}</b></p>
+                  <a id="${product.id}" class="remove-btn">Eliminar Producto</a>
+                </div>
+                <hr>`
 
                 // Generar Total Y mostrarlo en el DOM
 
-                subTotalPrice = product.price + subTotalPrice
+                subTotalPrice = productPrice + subTotalPrice
                 let subTotal = document.getElementById('subtotal')
                 subTotal.innerHTML = `<p class="mb-1">${subTotalPrice}</p>`
 
