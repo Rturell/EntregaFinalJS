@@ -20,14 +20,6 @@ class Products {
         this.img = img
         this.quantity = 1
     }
-
-    // increaseQuantity() {
-    //     this.quantity++
-    // }
-
-    // decreaseQuantity() {
-    //     this.quantity--
-    // }
 }
 
 class Cart {
@@ -43,8 +35,6 @@ class Cart {
 
             let product = this.cartList.find(producto => producto.id == productToAdd.id)
             product.quantity = product.quantity + 1
-            console.log("ya existe!!")
-            console.log(product.quantity)
 
         } else {
             this.cartList.push(productToAdd)
@@ -121,13 +111,14 @@ class Cart {
                 </div>
 
                 <div class="d-inline">
-                  <input class="quantity-input" min="1" max="10" type="number" value="${product.quantity}">
+                  <input id="input-${product.id}" class="quantity-input" min="1" max="10" type="number" value="${product.quantity}">
                 </div>
                 <div class="pl-0 flex-sm-col col-auto  my-auto">
                   <p class="price"><b>Precio:$${productPrice}</b></p>
                   <a id="${product.id}" class="remove-btn">Eliminar Producto</a>
                 </div>
                 <hr>`
+
 
                 // Generar Total Y mostrarlo en el DOM
 
@@ -176,6 +167,24 @@ class Cart {
 
             });
 
+            // Agregar evento input al input number para actualizar la cantidad
+
+            this.cartList.forEach(product => {
+
+                let quantityInput = document.getElementById(`input-${product.id}`)
+                quantityInput.addEventListener('input', event => {
+                    let newQuantity = parseInt(event.target.value);
+                    product.quantity = newQuantity;
+                    this.setLocalStorage();
+                    this.showCartOnDom();
+
+                });
+
+            });
+
+
+
+
         } else {
             let cart = document.getElementById('cart-custom')
             cart.innerHTML = `<p>No tienes productos en tu carrito</p>`;
@@ -195,6 +204,13 @@ class Cart {
         }
 
 
+    }
+
+    showProductNumber() {
+
+        let productQuantity = this.cartList.length
+        let cartquantity = document.getElementById('cart-quantity')
+        cartquantity.innerText = `${productQuantity}`
     }
 
 }
@@ -240,6 +256,7 @@ class ProductController {
 
             addToCartBtn.addEventListener('click', () => {
                 cart.addToCartList(product)
+                cart.showProductNumber()
                 cart.setLocalStorage()
                 cart.showCartOnDom()
 
@@ -278,6 +295,10 @@ productController.showProductsOnDom()
 
 // Agregar producto elegido a la Lista Carrito y Mostrarla en el Dom de Carrito
 productController.AddToCartEventListener()
+
 cart.getLocalStorage()
 cart.showCartOnDom()
+cart.showProductNumber()
+
+// Mensaje de confirmación al pagar
 cart.checkout()

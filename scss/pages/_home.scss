@@ -24,8 +24,25 @@
         font-size: 30px;
     }
 
-    .nav-cart a {
-        color: $color-white;
+    .nav-cart {
+
+        position: relative;
+
+        a {
+            color: $color-white;
+        }
+
+        .cart-quantity {
+            position: absolute;
+            font-size: 12px;
+            top: -11px;
+            left: 10px;
+            background-color: $color-primary;
+            padding: 6px;
+            border-radius: 50%;
+            line-height: 8px;
+        }
+
     }
 
 }
