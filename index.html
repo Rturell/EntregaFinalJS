@@ -33,6 +33,14 @@
 
 <body>
 
+    <!-- Video -->
+
+    <video id="background-video" autoplay loop muted>
+        <source src="img/video.mp4" type="video/mp4">
+    </video>
+
+    <div class="video-overlay"></div>
+
     <!-- Home -->
 
     <section id="hero">
@@ -45,7 +53,7 @@
                     <div class="d-flex flex-row justify-content-between align-items-center">
 
                         <div class="nav-logo">
-                            wine.
+                            Valley.
                         </div>
 
                         <div class="nav-cart">
@@ -67,16 +75,14 @@
         <div class="home">
             <div class="container">
                 <h1 class="home-title">The <br> Duoro <br> Valley</h1>
-                <p class="home-text mt-3 mt-md-4">¡Bienvenidos a nuestra tienda! Sumérgete en un mundo de
-                    exquisitez y descubre una cuidadosa selección de los mejores vinos del mundo disponibles a solo un
-                    clic.
-                    Ya seas un apasionado conocedor o un curioso paladar en busca de nuevas emociones, aquí encontrarás
-                    una amplia gama de
-                    variedades y cepas que harán bailar tus sentidos. Nuestro objetivo es brindarte una experiencia de
-                    compra única, donde
-                    la calidad, la autenticidad y la satisfacción sean siempre nuestra prioridad. ¡Levanta tu copa y
-                    comienza a vivir una experiencia vinícola extraordinaria desde la comodidad de tu hogar!
-                    ¡Salud!
+                <p class="home-text mt-3 mt-md-4">Bienvenido a The Duoro Valley, tu destino definitivo para explorar una
+                    increíble variedad de productos de alta calidad,
+                    cuidadosamente seleccionados para satisfacer todos tus gustos y necesidades. Desde elegantes prendas
+                    de moda hasta
+                    tecnología de vanguardia, desde productos para el hogar que transformarán tu espacio hasta artículos
+                    de belleza que
+                    realzarán tu estilo personal, nuestra tienda en línea ofrece un mundo diverso de opciones en un solo
+                    lugar conveniente.
                 </p>
 
                 <a class="btn mt-3 mt-md-4 btn-primary" href="#products">Ver Productos</a>
@@ -109,7 +115,8 @@
                                                             <li class="breadcrumb-item font-weight-bold ">
                                                                 <a class="black-text text-uppercase "
                                                                     href="/index.html">
-                                                                    <span class="mr-md-3 mr-1 keep-btn">SEGUIR COMPRANDO</span>
+                                                                    <span class="mr-md-3 mr-1 keep-btn">SEGUIR
+                                                                        COMPRANDO</span>
                                                                 </a>
                                                             </li>
                                                         </ol>
@@ -130,15 +137,15 @@
                                                         <div class="card-body">
                                                             <div class="row justify-content-between">
                                                                 <div class="col-auto mt-0">
-                                                                    <p><b>Lorem ipsum dolor sit amet 1567</b></p>
+                                                                    <p><b>323 Vernon St, Wakefield</b></p>
                                                                 </div>
                                                                 <div class="col-auto">
-                                                                    <p><b>usermail@gmail.com</b> </p>
+                                                                    <p><b>isabellreinger@gmail.com</b> </p>
                                                                 </div>
                                                             </div>
                                                             <div class="row mt-4">
                                                                 <div class="col">
-                                                                    <p class="text-muted mb-2">DETALLES DEL PAGO</p>
+                                                                    <p class="text-muted mb-2">FORMA DE PAGO</p>
                                                                     <hr class="mt-0">
                                                                 </div>
                                                             </div>
@@ -148,7 +155,7 @@
                                                                     TARJETA</label>
                                                                 <input type="text" class="form-control form-control-sm"
                                                                     name="NAME" id="NAME" aria-describedby="helpId"
-                                                                    placeholder="Nombre en la Tarjeta">
+                                                                    placeholder="Isabell Reinger">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="NAME" class="small text-muted mb-1">NUMERO
@@ -323,8 +330,8 @@
             <!-- Section: Text -->
             <section class="mb-4">
                 <p>
-                    ¡Levanta tu copa y comienza a vivir una experiencia vinícola extraordinaria desde la comodidad de tu
-                    hogar! ¡Salud!
+                    The Duoro Valley te invita a embarcarte en un emocionante viaje de descubrimiento, donde cada clic te acerca a productos únicos
+                    que reflejan tu individualidad y te brindan una experiencia de compra excepcional.
                 </p>
             </section>
 
@@ -333,7 +340,7 @@
 
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-            © 2023 Wine Cellar
+         © <span id="year"></span> The Duoro Valley
         </div>
 
     </footer>

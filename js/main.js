@@ -12,12 +12,13 @@ window.onscroll = function () {
 
 // Se crea la clase Producto
 class Products {
-    constructor(id, name, price, description, img) {
+    constructor(id, title, price, category, description, image) {
         this.id = id
-        this.name = name
+        this.title = title
         this.price = price
+        this.category = category
         this.description = description
-        this.img = img
+        this.image = image
         this.quantity = 1
     }
 }
@@ -98,11 +99,11 @@ class Cart {
                 cart.innerHTML += `
                 <div class="col-auto col-md-7">
                     <div class="media flex-column flex-sm-row">
-                        <img class="img-fluid" src="${product.img}" width="62" height="62">
+                        <img class="img-fluid" src="${product.image}" width="62" height="62">
                         <div class="media-body my-auto">
                             <div class="row">
                                 <div class="col-auto">
-                                  <p class="mb-0"> <b>${product.name}</b> </p><small class="text-muted"> ${product.description} </small>
+                                  <p class="mb-0"> <b>${product.title}</b> </p><small class="text-muted"> ${product.description} </small>
                                 </div>
                             </div>
                         </div>
@@ -130,7 +131,7 @@ class Cart {
                 let iva = document.getElementById('iva')
                 iva.innerHTML = `<p>${ivaPrice}</p>`
 
-                let totalPrice = ivaPrice + subTotalPrice
+                let totalPrice = Math.round(ivaPrice + subTotalPrice)
                 let total = document.getElementById('total')
                 total.innerHTML = `<p class="mb-1"><b>${totalPrice}</b></p>`
 
@@ -153,7 +154,7 @@ class Cart {
 
                     Toastify({
 
-                        text: `${product.name} eliminado del carrito!`,
+                        text: `${product.title} eliminado del carrito!`,
                         duration: 2000,
                         gravity: "bottom",
                         position: "right",
@@ -231,9 +232,9 @@ class ProductController {
 
             wineCard.innerHTML +=
                 `<div class="card p-4">
-         <img class="card-img" src="${product.img}" alt="">
+         <img class="card-img" src="${product.image}" alt="">
          <h3 class="card-title">
-             ${product.name}
+             ${product.title}
          </h3>
          <p class="card-text">
             ${product.description}
@@ -262,7 +263,7 @@ class ProductController {
 
                 Toastify({
 
-                    text: `"${product.name}" agregado al carrito`,
+                    text: `"${product.title}" agregado al carrito`,
                     duration: 2000,
                     gravity: "bottom",
                     position: "right",
@@ -283,18 +284,29 @@ const product = new Products()
 const productController = new ProductController()
 const cart = new Cart()
 
-productController.addToProductList(new Products(0, 'San Valentin Garnacha 2006', 200, 'Red Wine, Spain', '/img/vinos/vino1.png'))
-productController.addToProductList(new Products(1, 'Wardy Cabernet Sauvignon', 500, 'Red Wine, Chile', '/img/vinos/vino2.png'))
-productController.addToProductList(new Products(2, 'San Valentin Garnacha 2005', 300, 'Red Wine, Spain', '/img/vinos/vino3.png'))
-productController.addToProductList(new Products(3, 'Vino Yours 2013', 280, 'Red Blend, Uruguay', '/img/vinos/vino4.png'))
-productController.addToProductList(new Products(4, 'Garzón Reserva Tannat', 490, 'Tinto, Uruguay', '/img/vinos/vino5.png'))
 
+fetch('https://fakestoreapi.com/products')
+    .then(res => res.json())
+    .then(json => {
+        // Agregar los productos obtenidos del fetch a la lista de productos
+        json.forEach(productData => {
+                const newProduct = new Products(
+                productData.id,
+                productData.title,
+                productData.price,
+                productData.category,
+                productData.description,
+                productData.image,
+            );
+            productController.addToProductList(newProduct);
+        });
 
-// Mostrar los Productos en el DOM
-productController.showProductsOnDom()
+        // Mostrar los Productos en el DOM
+        productController.showProductsOnDom();
+        // Agregar producto elegido a la Lista Carrito y Mostrarla en el Dom de Carrito
+        productController.AddToCartEventListener();
+    });
 
-// Agregar producto elegido a la Lista Carrito y Mostrarla en el Dom de Carrito
-productController.AddToCartEventListener()
 
 cart.getLocalStorage()
 cart.showCartOnDom()
@@ -302,3 +314,9 @@ cart.showProductNumber()
 
 // Mensaje de confirmación al pagar
 cart.checkout()
+
+// Footer Date 
+
+const date = new Date();
+let year = document.getElementById('year')
+year.innerHTML = date.getFullYear()
