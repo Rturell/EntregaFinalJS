@@ -191,7 +191,6 @@ class Cart {
 
                         }).showToast();
    
-                        product.quantity = 1
                         this.setLocalStorage();
                         this.showCartOnDom()
 
