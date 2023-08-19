@@ -119,6 +119,17 @@
 #products a {
   text-decoration: none;
 }
+#products .card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+@media (width > 576px) {
+  #products .card-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
 #products .card {
   flex: 1 1 100%;
   text-align: center;
@@ -130,14 +141,14 @@
 #products .card:hover {
   transform: scale(1.1);
 }
-@media (width > 576px) {
-  #products .card {
-    flex: 1 1 46%;
-  }
-}
 @media (width > 768px) {
   #products .card {
-    flex: 1 1 23%;
+    flex: 1 1 32%;
+  }
+}
+@media (width > 992px) {
+  #products .card {
+    flex: 1 1 25%;
   }
 }
 #products .card-title {

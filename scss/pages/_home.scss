@@ -131,11 +131,22 @@
 
 #products {
     padding: 50px 0;
-    background-color: $color-gray    ;
+    background-color: $color-gray;
     color: #0E1020;
 
     a {
         text-decoration: none;
+    }
+
+    .card-container {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+
+        @media (width > 576px) {
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
     }
 
     .card {
@@ -150,12 +161,16 @@
             transform: scale(1.1);
         }
 
-        @media (width > 576px) {
-            flex: 1 1 46%;
-        }
+        // @media (width > 576px) {
+        //     flex: 1 1 46%;
+        // }
 
         @media (width > 768px) {
-            flex: 1 1 23%;
+            flex: 1 1 32%;
+        }
+
+        @media (width > 992px) {
+            flex: 1 1 25%;
         }
 
         &-title {
