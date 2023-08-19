@@ -176,15 +176,56 @@ class Cart {
                 quantityInput.addEventListener('input', event => {
                     let newQuantity = parseInt(event.target.value);
                     product.quantity = newQuantity;
-                    this.setLocalStorage();
-                    this.showCartOnDom();
+                    console.log(newQuantity)
+
+                    if (isNaN(newQuantity) || newQuantity === 0) {
+
+                        Toastify({
+                            text: `0 no es un número válido!`,
+                            duration: 2000,
+                            gravity: "bottom",
+                            position: "right",
+                            style: {
+                                background: "linear-gradient(117.8deg, rgb(240, 19, 77) 22.2%, rgb(228, 0, 124) 88.7%)",
+                            },
+
+                        }).showToast();
+   
+                        product.quantity = 1
+                        this.setLocalStorage();
+                        this.showCartOnDom()
+
+                        let checkout = document.getElementById('checkout')
+                        checkout.disabled = true
+
+                    } else if (newQuantity > 10) {
+
+                        Toastify({
+                            text: ` ${newQuantity} unidades supera el stock de este producto.`,
+                            duration: 2000,
+                            gravity: "bottom",
+                            position: "right",
+                            style: {
+                                background: "linear-gradient(117.8deg, rgb(240, 19, 77) 22.2%, rgb(228, 0, 124) 88.7%)",
+                            },
+
+                        }).showToast();
+
+                        this.setLocalStorage();
+                        this.showCartOnDom()
+                        checkout.disabled = true
+
+                        
+                    } else {
+                        this.setLocalStorage();
+                        this.showCartOnDom();
+                    }
+
+
 
                 });
 
             });
-
-
-
 
         } else {
             let cart = document.getElementById('cart-custom')
@@ -290,7 +331,7 @@ fetch('https://fakestoreapi.com/products')
     .then(json => {
         // Agregar los productos obtenidos del fetch a la lista de productos
         json.forEach(productData => {
-                const newProduct = new Products(
+            const newProduct = new Products(
                 productData.id,
                 productData.title,
                 productData.price,
