@@ -97,9 +97,9 @@ class Cart {
 
                 let productPrice = product.price * product.quantity
                 cart.innerHTML += `
-                <div class="col-auto col-md-7">
+                <div class="col-auto">
                     <div class="media flex-column flex-sm-row">
-                        <img class="img-fluid" src="${product.image}" width="62" height="62">
+                        <img class="img-fluid mb-2" src="${product.image}" width="62" height="62">
                         <div class="media-body my-auto">
                             <div class="row">
                                 <div class="col-auto">
@@ -316,7 +316,6 @@ cart.showProductNumber()
 cart.checkout()
 
 // Footer Date 
-
 const date = new Date();
 let year = document.getElementById('year')
 year.innerHTML = date.getFullYear()
