@@ -158,12 +158,8 @@
         transition: all 0.3s ease;
 
         &:hover {
-            transform: scale(1.1);
+            transform: scale(1.03);
         }
-
-        // @media (width > 576px) {
-        //     flex: 1 1 46%;
-        // }
 
         @media (width > 768px) {
             flex: 1 1 32%;
