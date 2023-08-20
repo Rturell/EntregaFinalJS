@@ -116,7 +116,7 @@ class Cart {
                 </div>
                 <div class="pl-0 flex-sm-col col-auto  my-auto">
                   <p class="price"><b>Precio:$${productPrice}</b></p>
-                  <a id="${product.id}" class="remove-btn">Eliminar Producto</a>
+                  <a id="d-${product.id}" class="remove-btn">Eliminar Producto</a>
                 </div>
                 <hr>`
 
@@ -145,7 +145,7 @@ class Cart {
 
             this.cartList.forEach(product => {
 
-                let btnRemove = document.getElementById(`${product.id}`)
+                let btnRemove = document.getElementById(`d-${product.id}`)
                 btnRemove.addEventListener("click", () => {
 
                     this.removeFromCartList(product)
@@ -348,12 +348,14 @@ fetch('https://fakestoreapi.com/products')
         productController.AddToCartEventListener();
     });
 
-
+// Toma la data del Local Storage y la renderiza en el Dom.
 cart.getLocalStorage()
 cart.showCartOnDom()
+
+// Muestra el numero de productos que hay en el carrito. 
 cart.showProductNumber()
 
-// Mensaje de confirmación al pagar
+// Mensaje de confirmación al pagar.
 cart.checkout()
 
 // Footer Date 
