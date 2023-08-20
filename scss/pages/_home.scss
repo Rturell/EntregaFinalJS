@@ -169,6 +169,18 @@
             flex: 1 1 25%;
         }
 
+        &-category {
+            background-color: $color-black;
+            color: $color-white;
+            font-size: 10px;
+            text-transform: uppercase;
+            padding: 8px;
+            border-radius: 10px 0 10px 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
         &-title {
             color: #0E1020;
             font-size: 20px;

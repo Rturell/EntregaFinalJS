@@ -271,7 +271,8 @@ class ProductController {
         this.productList.forEach(product => {
 
             wineCard.innerHTML +=
-                `<div class="card p-4">
+        `<div class="card p-4">
+        <div class="card-category">${product.category}</div>
          <img class="card-img" src="${product.image}" alt="">
          <h3 class="card-title">
              ${product.title}

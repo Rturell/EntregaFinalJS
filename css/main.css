@@ -151,6 +151,17 @@
     flex: 1 1 25%;
   }
 }
+#products .card-category {
+  background-color: black;
+  color: white;
+  font-size: 10px;
+  text-transform: uppercase;
+  padding: 8px;
+  border-radius: 10px 0 10px 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 #products .card-title {
   color: #0E1020;
   font-size: 20px;
