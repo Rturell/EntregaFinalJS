@@ -318,6 +318,14 @@ class ProductController {
 
         });
     }
+
+    apiError() {
+        let products = document.getElementById('products')
+        products.innerHTML =
+        `<div class="alert alert-danger text-center" role="alert">
+        Error en la base de datos. No se puede acceder a la api de productos.
+        </div>`
+    }
 }
 
 
@@ -346,7 +354,11 @@ fetch('https://fakestoreapi.com/products')
         productController.showProductsOnDom();
         // Agregar producto elegido a la Lista Carrito y Mostrarla en el Dom de Carrito
         productController.AddToCartEventListener();
-    });
+    })
+    .catch(() => {
+        // Mostrar mensaje de error en el DOM si no se accede a la api
+        productController.apiError()
+    })
 
 // Toma la data del Local Storage y la renderiza en el Dom.
 cart.getLocalStorage()
