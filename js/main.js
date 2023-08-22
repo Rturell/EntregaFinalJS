@@ -319,7 +319,7 @@ class ProductController {
         });
     }
 
-    apiError() {
+    apiErrorMsg() {
         let products = document.getElementById('products')
         products.innerHTML =
             `<div class="alert alert-danger text-center" role="alert">
@@ -359,29 +359,20 @@ fetch('https://fakestoreapi.com/products')
         });
 
         productController.removeLoadingMsg()
-
-        // Mostrar los Productos en el DOM
         productController.showProductsOnDom();
-        // Agregar producto elegido a la Lista Carrito y Mostrarla en el Dom de Carrito
         productController.AddToCartEventListener();
-
-    
 
     })
     .catch(() => {
         productController.removeLoadingMsg()
-        // Mostrar mensaje de error en el DOM si no se accede a la api
-        productController.apiError()
+        productController.apiErrorMsg()
     })
 
 // Toma la data del Local Storage y la renderiza en el Dom.
 cart.getLocalStorage()
 cart.showCartOnDom()
 
-// Muestra el numero de productos que hay en el carrito. 
 cart.showProductNumber()
-
-// Mensaje de confirmación al pagar.
 cart.checkout()
 
 // Footer Date 
