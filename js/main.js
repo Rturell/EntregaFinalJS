@@ -79,6 +79,8 @@ class Cart {
             })
 
             this.removeLocalStorage()
+            this.getLocalStorage()
+            this.showCartOnDom()
             checkout.disabled = true
         })
     }
