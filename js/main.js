@@ -333,13 +333,9 @@ class ProductController {
     }
 }
 
-
-
-
 const product = new Products()
 const productController = new ProductController()
 const cart = new Cart()
-
 
 fetch('https://fakestoreapi.com/products')
     .then(res => res.json())
