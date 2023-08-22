@@ -190,7 +190,7 @@ class Cart {
                             },
 
                         }).showToast();
-   
+
                         this.setLocalStorage();
                         this.showCartOnDom()
 
@@ -214,7 +214,7 @@ class Cart {
                         this.showCartOnDom()
                         checkout.disabled = true
 
-                        
+
                     } else {
                         this.setLocalStorage();
                         this.showCartOnDom();
@@ -271,7 +271,7 @@ class ProductController {
         this.productList.forEach(product => {
 
             wineCard.innerHTML +=
-        `<div class="card p-4">
+                `<div class="card p-4">
         <div class="card-category">${product.category}</div>
          <img class="card-img" src="${product.image}" alt="">
          <h3 class="card-title">
@@ -322,11 +322,18 @@ class ProductController {
     apiError() {
         let products = document.getElementById('products')
         products.innerHTML =
-        `<div class="alert alert-danger text-center" role="alert">
+            `<div class="alert alert-danger text-center" role="alert">
         Error en la base de datos. No se puede acceder a la api de productos.
         </div>`
     }
+
+    removeLoadingMsg() {
+        let loadingMsg = document.getElementById('loading-msg')
+        loadingMsg.remove()
+    }
 }
+
+
 
 
 const product = new Products()
@@ -348,14 +355,21 @@ fetch('https://fakestoreapi.com/products')
                 productData.image,
             );
             productController.addToProductList(newProduct);
+
         });
+
+        productController.removeLoadingMsg()
 
         // Mostrar los Productos en el DOM
         productController.showProductsOnDom();
         // Agregar producto elegido a la Lista Carrito y Mostrarla en el Dom de Carrito
         productController.AddToCartEventListener();
+
+    
+
     })
     .catch(() => {
+        productController.removeLoadingMsg()
         // Mostrar mensaje de error en el DOM si no se accede a la api
         productController.apiError()
     })
